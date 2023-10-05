@@ -74,10 +74,15 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ecommerce',  # Replace with your database name
+        'USER': 'postgres',  # Replace with your PostgreSQL username
+        'PASSWORD': 'admin',  # Replace with your PostgreSQL password
+        'HOST': 'localhost',  # Replace with your PostgreSQL host if it's not localhost
+        'PORT': '',  
     }
 }
 
@@ -118,7 +123,6 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
-    "/ecommerce/static/",
 ]
 
 # Default primary key field type
