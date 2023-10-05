@@ -1,0 +1,217 @@
+
+{% load static %}
+
+
+<!doctype html>
+<html lang="zxx">
+
+<head>
+  <meta charset="utf-8">
+
+  <!-- site title -->
+  <title>Aruk - Multipurpose Woocommerce Store</title>
+
+  <meta name="description" content="aruk - multipurpose ecommerce store, electronic shop, fashion store">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- favicons and shortcut icons -->
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- stylesheets -->
+  <link rel="stylesheet" href="{% static 'assets/css/normalize.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css'%}">
+  <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css'%}">
+  <link rel="stylesheet" href="{% static 'assets/css/line-awesome.min.css'%}">
+  <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css'%}">
+  <link rel="stylesheet" href="{% static 'assets/css/animate.css'%}">
+  <link rel="stylesheet" href="{% static 'assets/css/slick.css'%}">
+  <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css'%}">
+  <link rel="stylesheet" href="{% static 'assets/css/jquery.nice-number.css'%}">
+  <link rel="stylesheet" href="{% static 'assets/css/mean-menu.css'%}">
+  <link rel="stylesheet" href="{% static 'assets/css/default.css'%}">
+  <link rel="stylesheet" href="{% static 'assets/style.css'%}">
+</head>
+
+<body>
+        <header>
+            <div class="header-1 pt-35">
+              <div class="container">
+                <div class="row">
+                  <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6 col-7 order-md-2 order-lg-1">
+                    <div class="logo text-md-center text-lg-left">
+                      <a href="home.html"><img src="{% static 'C:\Users\USER\OneDrive\Desktop\shibin\ecommerce\static\assets\img\images\logo.png'%}" alt="aruk-logo"></a>
+                    </div>
+                  </div>
+          
+                  <div class="col-xl-7 col-lg-7 col-md-3 order-md-1 offset-sm-2 offset-md-0 order-lg-2 col-sm-auto">
+                    <nav>
+                      <div id="mobile-menu" class="main-menu">
+                        <ul>
+                          <li><a href="{%url 'home'%}">Home</a></li>
+                          <li><a href="{%url 'shop'%}">Shop</a></li>
+                          <li><a href="{%url 'about_us.html'%}">About Us</a></li>
+                          <li><a href="{%url 'blog.html'%}">Blog</a></li>
+                          <li><a href="{%url 'contact_page.html'%}">Contact</a></li>
+                        </ul>
+                      </div>
+                    </nav>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-5 order-md-3 order-lg-3">
+                    <div class="nav-icons">
+                      <ul>
+                        <li>
+                          <div class="search position-relative">
+                            <span><i class="fas fa-search"></i></span>
+                            <div class="search-overlap">
+                            </div>
+                            <form action="#" class="search-form position-fixed">
+                              <div class="search-input">
+                                <div class="search-close">
+                                  <span>X</span>
+                                </div>
+                                <input type="text" placeholder="Enter your keywords.....">
+                              </div>
+                            </form>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="user-cart-wishlist">
+                            <a href="my_wishlist.html"><i class="fas fa-heart"></i></a><!-- Wishlist icon -->
+                            <a href="my_cart.html"><i class="fas fa-shopping-cart"></i>
+                              <span class="badge badge-pink ">1</span><!-- Cart icon with badge -->
+                            </a>
+                            <a href="{% url 'user_signup' %}"><i class="fas fa-user"></i></a>  <!-- User icon -->
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="mobile-menu"></div>
+              </div>
+            </div>
+          </header>
+    </header>
+    
+    <div class="content">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+    
+    <footer>
+        <footer class="footer-area ">
+            <div class="container">
+              <div class="footer-menu pt-120">
+                <div class="row">
+                  <div class="col-xl-4 col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer-widget mb-30 mb-lg-0 pt-15">
+                      <div class="logo pb-30">
+                        <a href="index.html"><img src="{%static 'C:\Users\USER\OneDrive\Desktop\shibin\ecommerce\static\assets\img\images\logo.png'%}" alt="img"></a>
+                      </div>
+                      <div class="footer-info">
+                        <ul>
+                          <li>Email: <span class="ml-5">aruk@gmail.com</span></li>
+                          <li>Phone: <span class="ml-5">+948 256 347 968</span></li>
+                        </ul>
+                        <p class="pr-65">Subscribe to our newsleter and stay
+                          up to date with latest offers and
+                          upcoming trends.</p>
+                        <div class="footer-input position-relative mt-30">
+                          <input type="email" placeholder="Email">
+                          <button><i class="fas fa-arrow-right"></i></button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer-widget mb-30 mb-lg-0">
+                      <h4>About Us</h4>
+                      <ul class="footer-info pt-10">
+                        <li><a class="slider-btn position-relative d-inline-block" href="about_us.html">Our Outlets</a></li>
+                        <li><a class="slider-btn position-relative d-inline-block" href="about_us.html">Sales and Retails</a>
+                        </li>
+                        <li><a class="slider-btn position-relative d-inline-block" href="about_us.html">Areas we serve</a></li>
+                        <li><a class="slider-btn position-relative d-inline-block" href="about_us.html">Career at aruk</a></li>
+                        <li><a class="slider-btn position-relative d-inline-block" href="contact_page.html">Contact Us</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer-widget">
+                      <h4>Help and Support</h4>
+                      <ul class="footer-info pt-10">
+                        <li><a class="slider-btn position-relative d-inline-block" href="about_us.html">Track my order</a></li>
+                        <li><a class="slider-btn position-relative d-inline-block" href="about_us.html">Our top products</a>
+                        </li>
+                        <li><a class="slider-btn position-relative d-inline-block" href="shopping_cart.html">My cart</a></li>
+                        <li><a class="slider-btn position-relative d-inline-block" href="about_us.html">Sign in</a></li>
+                        <li><a class="slider-btn position-relative d-inline-block" href="checkout_page.html">Shipping
+                            Calculator</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6  pl-xl-0">
+                    <div class="footer-widget">
+                      <h4>Pages & Resources</h4>
+                      <ul class="footer-info pt-10">
+                        <li><a class="slider-btn position-relative d-inline-block" href="about_us.html">About Us</a></li>
+                        <li><a class="slider-btn position-relative d-inline-block" href="shop_grid.html">Shop Page</a></li>
+                        <li><a class="slider-btn position-relative d-inline-block" href="shop_grid.html">Category page</a></li>
+                        <li><a class="slider-btn position-relative d-inline-block" href="about_us.html">Sign in page</a></li>
+                        <li><a class="slider-btn position-relative d-inline-block" href="404.html">404 page</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="footer-bottom mt-80">
+              <div class="container">
+                <div class="row">
+                  <div class="col-xl-4 col-lg-5 col-md-6 col-sm-12 order-md-2 order-lg-1">
+                    <div class="copyright mt-15">
+                      <p>Copyright © 2020 | Designed by <a href="https://themeforest.net/user/wpsmasher"
+                          target="_blank">Wpsmasher</a></p>
+                    </div>
+        
+                  </div>
+                  <div class="col-xl-5 col-lg-3 col-md-12 order-md-1 order-lg-2">
+                    <ul class="social-icon text-center mt-15">
+                      <li><a href=""><i class="lab la-facebook-f"></i></a></li>
+                      <li><a href=""><i class="lab la-twitter"></i></a></li>
+                      <li><a href=""><i class="lab la-instagram"></i></a></li>
+                      <li><a href=""><i class="lab la-vimeo"></i></a></li>
+                    </ul>
+                  </div>
+                  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 order-md-2 order-lg-3">
+                    <div class="policy  text-right mt-15">
+                      <a class="position-relative" href="#">Terms of Use </a>
+                      <a class="ml-40" href="#">Privacy Policy</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </footer>
+    </footer>
+    <script src="{% static 'assets/js/vendor/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/js/vendor/modernizr-3.11.2.min.js' %}"></script>
+  <script src="{% static 'assets/js/vendor/bootstrap.min.js' %}"></script>
+  <script src="{% static 'assets/js/vendor/popper.min.js' %}"></script>
+  <script src="{% static 'assets/js/vendor/jquery-mean-menu.min.js' %}"></script>
+  <script src="{% static 'assets/js/vendor/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'assets/js/vendor/slick.min.js' %}"></script>
+  <script src="{% static 'assets/js/vendor/jquery.magnific-popup.min.js' %}"></script>
+  <script src="{% static 'assets/js/vendor/isotope.min.js' %}"></script>
+  <script src="{% static 'assets/js/vendor/jquery.nice-number.js' %}"></script>
+  <script src="{% static 'assets/js/countdown.js' %}"></script>
+  <script src="{% static 'assets/js/scripts.js' %}"></script>
+</body>
+</html>
