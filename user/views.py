@@ -76,7 +76,7 @@ def user_signup(request):
 
 @never_cache
 def admin_dashboard(request):
-    return render(request,'admin/admin_dashboard.html')
+    return render(request,'admin_side/admin_dashboard.html')
 @never_cache
 def admin_login(request):
     if request.method=='POST':
@@ -92,7 +92,7 @@ def admin_login(request):
             return redirect('admin_login')
        
     
-    return render(request,'admin/admin_login.html')
+    return render(request,'admin_side/admin_login.html')
 
 
 
@@ -102,7 +102,7 @@ def admin_users(request):
         'register_details':register_details
     }
         
-    return render(request,'admin/admin_users.html',context)
+    return render(request,'admin_side/admin_users.html',context)
 
 def user_block(request,user_id):
     user=User.objects.get(id=user_id)
