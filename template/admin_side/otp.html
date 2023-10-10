@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OTP Verification</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom background color */
+        body {
+            background-color: #333;
+            color: #fff;
+        }
+
+        /* Styling for modal content */
+        .modal-content {
+            background-color: #222;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- OTP Verification Modal -->
+    <div class="modal fade show" id="otpModal" tabindex="-1" role="dialog" aria-labelledby="otpModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="otpModalLabel">OTP Verification</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- OTP Verification Form -->
+                    <form id="otpVerificationForm">
+                        <div class="form-group">
+                            <label for="otp">Enter OTP:</label>
+                            <input type="text" id="otp" class="form-control" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="verifyOTPButton">Verify OTP</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JavaScript (jQuery and Popper.js are required) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Automatically show the OTP modal
+        $(document).ready(function () {
+            $('#otpModal').modal('show');
+        });
+
+        // Simulate OTP verification (replace with actual server-side verification)
+        $('#verifyOTPButton').click(function () {

@@ -1,11 +1,18 @@
+import random
 from django.db import IntegrityError
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render,get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages,auth
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate,login
 from django.views.decorators.cache import never_cache
-
+from django.contrib.auth import login
+from .utils import send_otp
+from datetime import datetime, timedelta
+import pyotp
+from django .contrib.auth.models import User
+from django.core.mail import send_mail
+from django.conf import settings
 # Create your views here.
 
 
@@ -33,6 +40,7 @@ def user_login(request):
         
         user=authenticate(username=username,password=password)
         if user is not None:
+              
             login(request,user)
             
             messages.success(request,'Login successfully')
@@ -42,35 +50,74 @@ def user_login(request):
             return redirect('user_signup')
     return render(request, 'user/user_login.html')
 
+
+
 def user_signup(request):
-    
-    if request.method=='POST':
-    
-       username=request.POST['username']
-       email=request.POST['email'] 
-       password=request.POST['password']
-       confirm_password=request.POST['confirm_password']
-       if password==confirm_password:
-           try:
-               
-                user=User.objects.create(username=username,email=email,password=make_password(password))
-                user.save()
-                auth.login(request, user)
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        confirm_password = request.POST['confirm_password']
 
-                messages.success(request,"your account has been created successfully")
-                return redirect ('home')       
-           except IntegrityError:
-               messages.error(request,'User is already exists')
-       else:
-           messages.error(request,'Password is already taken')
-    return render(request,'user/user_signup.html')
+        username_is_exist = User.objects.get(username=username).exists()
+        if username_is_exist :
+            messages.error(request, 'User already exists')
+            return redirect('user_signup')
+        email_is_exist=User.objects.get(username=username).exist()
+        if email_is_exist:
+            messages.error(request, 'email already exists')
+            return redirect('user_signup')    
+        
+        if password == confirm_password:
+            
+                
+                send_otp(request,email)
+                request.session['username']=username
+                request.session['email']=email
+                request.session['password']=password
+                # user = User.objects.create(username=username, email=email, password=make_password(password))
+                # user.save()
+                return redirect('otp')
+        else:
+            pass
+    return render(request, 'user/user_signup.html')
+ 
+def otp_page(request):
+    error_message = None
+    if request.method == 'POST':
+        otp = request.POST['otp']
+        username = request.session['username']  
+        otp_secret_key = request.session['otp_secret_key']  # Use square brackets here
+        otp_valid_until = request.session['otp_valid_date']  # Use square brackets here
+        
+        if otp_secret_key and otp_valid_until is not None:
+            valid_until = datetime.fromisoformat(otp_valid_until)
+
+            if valid_until > datetime.now():
+                totp = pyotp.TOTP(otp_secret_key, interval=60)
+                if totp.verify(otp):
+                    
+                    username=request.session['username']
+                    email=request.session['email']
+                    password=request.session['password']
+                    user = User.objects.create(username=username, email=email, password=make_password(password))
+                    user.save()
+                    login(request, user)
+                    del request.session['email']
+                    del request.session['password']
+                    del request.session['username']
+                    del request.session['otp_secret_key']
+                    del request.session['otp_valid_date']
+                    return redirect(home)
+                else:
+                    error_message='invalid OTP'
+            else:
+               error_message='OTP expired'
+        else:
+            error_message='Oops,something went wrong'
+    return render(request, 'user/otp.html', {'error_message':error_message})
 
 
-
-
-
-
-      # admin section
 
 
 

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Management</title>
+    <!-- Add Bootstrap CSS link here -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Add your custom CSS styles here */
+        /* Style for the brand images */
+        .brand-img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Brand Management</h1>
+        <!-- Button to trigger Add Brand Modal -->
+        <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#addBrandModal">Add Brand</button>
+        
+        <!-- Table to display brand information -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Brand Name</th>
+                    <th>Logo</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through your brand data here -->
+            {% for i in brand %}
+                <tr>
+            
+                    <td> {{i.Brand_name}} </td>
+                    <td><img style="width: 50px;"  {% if i.Brand_image %} src="{{i.Brand_image.url}}"    {% endif %} alt="image"></td>
+                    <td>
+                        <!-- Button to trigger Edit Brand Modal -->
+                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editBrandModal-{{i.id}}"  data-url="{% url 'brand:edit_brand' i.id %}">Edit</button>
+
+
+                        <!-- Button to trigger Delete Brand Modal -->
+                        <a href="{%url 'brand:delete_brand' i.id%}" class="btn btn-danger">Delete</a></td>
+
+                    </td>
+                </tr>
+                <!-- Repeat the above row for each brand -->
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Add Brand Modal -->
+        <div class="modal fade" id="addBrandModal" tabindex="-1" role="dialog" aria-labelledby="addBrandModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+            
+
+
+                <form action="{% url 'brand:add_brand' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="modal-body">
+                        <!-- Add your Add Brand Modal content here -->
+                            <div class="form-group">
+                                <label for="brandName">Brand Name</label>
+                                <input type="text" class="form-control" id="brandName" placeholder="Enter Brand Name" name="brand_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="brandImage">Brand Image</label>
+                                <input type="file" class="form-control-file" id="brandImage" name="brand_image">
+                            </div>                            
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <!-- <button type="submit" class="btn btn-primary" data-dismiss="modal">Save Changes</button> -->
+                    </div>
+
+
+                    <button type="submit">
+                        Save Changes
+                        
+                    </button>
+                </form>
+
+
+                
+                <!-- <form method="POST" action="/guue/">
+
+                    <div class="modal-body">
+                        Add your Add Brand Modal content here
+                            <div class="form-group">
+                                <label for="brandName">Brand Name</label>
+                                <input type="text" class="form-control" id="brandName" placeholder="Enter Brand Name" name="brand_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="brandImage">Brand Image</label>
+                                <input type="file" class="form-control-file" id="brandImage" name="brand_image">
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" data-dismiss="modal">Save Changes</button>
+                    </div>
+                </form> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Brand Modal -->
+
+        {% for i in brand %}
+        
+        <div class="modal fade" id="editBrandModal-{{i.id}}" tabindex="-1" role="dialog" aria-labelledby="editBrandModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editBrandModalLabel">Edit Brand</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Add your Edit Brand Modal content here -->
+                        <form method="POST" action="{% url 'brand:edit_brand' i.id %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="modal-body">
+                                <!-- Add your Edit Brand Modal content here -->
+                                <div class="form-group">
+                                    <label for="editBrandName">Brand Name</label>
+                                    <input type="text" class="form-control" id="editBrandName" placeholder="Enter Brand Name" name="brand_name" value="{{i.Brand_name}}" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="brandImage">Brand Image</label>
+                                    <input type="file" class="form-control-file" id="brandImage" name="brand_image" value="">
+                                </div>     
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </form>
+                        
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" type="submit"  class="btn btn-primary" data-dismiss="modal">Save Changes</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+       
+
+        <!-- Delete Brand Modal -->
+       
+        
+    </div>
+    {%endfor%}
+
+    <!-- Add Bootstrap and jQuery scripts here -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,3 +1,4 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,7 +42,12 @@
                                 <td>{{ i.category_name }}</td>
                                 <td>{{ i.category }}</td>
                                 <td>{{ i.brand }}</td>
+                                
                                 <td>{{ i.description }}</td>
+                                <td>
+                                    <a class="btn btn-danger" href="{%url 'category:edit_category' i.id %}">Edit</a>
+                                    <a href="{%url 'category:delete_category' i.id%}" class="btn btn-danger">Delete</a></td>
+                                </td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -55,8 +61,7 @@
                     <a href="{% url 'admin:admin_dashboard%'}">close</a>
                 </button>
                 <a href="{% url 'category:add_category' %}" class="btn btn-success">Add</a> <!-- Add button for adding items -->
-                <td><a href="#" class="btn btn-primary">Edit</a></td>
-                <td><a href="#" class="btn btn-danger">Delete</a></td>
+                
             </div>
         </div>
     </div>
@@ -64,9 +69,9 @@
 
 
 <!-- Add Bootstrap JS and jQuery links here -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="{%static 'admin_side/https://code.jquery.com/jquery-3.5.1.slim.min.js'%}"></script>
+<script src="{%static 'admin_side/https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js'%}"></script>
+<script src="{%static 'admin_side/https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js'%}"></script>
 
 </body>
 </html>

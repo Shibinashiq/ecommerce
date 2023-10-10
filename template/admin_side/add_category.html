@@ -1,4 +1,4 @@
-{% extends "user/base.html" %}
+
 {% load static %}
 {%block content%}
 <!DOCTYPE html>
@@ -93,6 +93,11 @@
 <div class="col-sm-12 col-xl-6">
     <div class="bg-secondary rounded p-4">
         <h6 class="mb-4">Add Product</h6>
+        {% if error_message %}
+<div class="alert alert-danger">
+    {{ error_message }}
+</div>
+{% endif %}
         <form method="POST" action="{%url 'category:add_category'%}" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="mb-3">
@@ -111,9 +116,7 @@
                 <label for="description" class="form-label">Description</label>
                 <textarea class="form-control" id="description" name="description" rows="3"></textarea>
             </div>
-            <button type="submit">
-              save
-            </button>
+            <button type="submit">save</button>
 
         </form>
     </div>
@@ -148,18 +151,18 @@
     </div> -->
 
     <!-- JavaScript Libraries -->
-    <script src="{%static 'admin/assets//https://code.jquery.com/jquery-3.4.1.min.js'%}"></script>
-    <script src="{%static 'admin/assets/https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js'%}"></script>
-    <script src="{%static 'admin/assets/lib/chart/chart.min.js'%}"></script>
-    <script src="{%static 'admin/assets/lib/easing/easing.min.js'%}"></script>
-    <script src="{%static 'admin/assets/lib/waypoints/waypoints.min.js'%}"></script>
-    <script src="{%static 'admin/assets/lib/owlcarousel/owl.carousel.min.js'%}"></script>
-    <script src="{%static 'admin/assets/lib/tempusdominus/js/moment.min.js'%}"></script>
-    <script src="{%static 'admin/assets/lib/tempusdominus/js/moment-timezone.min.js'%}"></script>
-    <script src="{%static 'admin/assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js'%}"></script>
+    <script src="{%static 'admin_side/assets//https://code.jquery.com/jquery-3.4.1.min.js'%}"></script>
+    <script src="{%static 'admin_side/assets/https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js'%}"></script>
+    <script src="{%static 'admin_side/assets/lib/chart/chart.min.js'%}"></script>
+    <script src="{%static 'admin_side/assets/lib/easing/easing.min.js'%}"></script>
+    <script src="{%static 'admin_side/assets/lib/waypoints/waypoints.min.js'%}"></script>
+    <script src="{%static 'admin_side/assets/lib/owlcarousel/owl.carousel.min.js'%}"></script>
+    <script src="{%static 'admin_side/assets/lib/tempusdominus/js/moment.min.js'%}"></script>
+    <script src="{%static 'admin_side/assets/lib/tempusdominus/js/moment-timezone.min.js'%}"></script>
+    <script src="{%static 'admin_side/assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js'%}"></script>
 
     <!-- Template Javascript -->
-    <script src="{%static 'admin/assets/js/main.js'%}"></script>
+    <script src="{%static 'admin_side/assets/js/main.js'%}"></script>
     {%endblock%}
 </body>
 
