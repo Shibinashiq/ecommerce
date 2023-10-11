@@ -17,7 +17,6 @@ urlpatterns = [
     path('admin_users',views.admin_users,name='admin_users'),
     path('user_block/<int:user_id>/', views.user_block, name='user_block'),
     path('user_unblock/<int:user_id>/',views.user_unblock,name='user_unblock'),
-    path('product',views.product,name='product.html'),
     
     
 ]

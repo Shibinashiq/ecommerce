@@ -39,11 +39,12 @@
                     <td><img style="width: 50px;"  {% if i.Brand_image %} src="{{i.Brand_image.url}}"    {% endif %} alt="image"></td>
                     <td>
                         <!-- Button to trigger Edit Brand Modal -->
-                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editBrandModal-{{i.id}}"  data-url="{% url 'brand:edit_brand' i.id %}">Edit</button>
+                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editBrandModal"  data-url="{% url 'brand:edit_brand' i.id %}">Edit</button>
 
 
                         <!-- Button to trigger Delete Brand Modal -->
-                        <a href="{%url 'brand:delete_brand' i.id%}" class="btn btn-danger">Delete</a></td>
+                        <button class="btn btn-danger" data-toggle="modal" data-target="#deleteBrandModal" data-url="{% url 'brand:delete_brand' i.id %}">Delete</button>
+
 
                     </td>
                 </tr>
@@ -113,7 +114,7 @@
 
         {% for i in brand %}
         
-        <div class="modal fade" id="editBrandModal-{{i.id}}" tabindex="-1" role="dialog" aria-labelledby="editBrandModalLabel" aria-hidden="true">
+        <div class="modal fade" id="editBrandModal" tabindex="-1" role="dialog" aria-labelledby="editBrandModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -134,7 +135,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="brandImage">Brand Image</label>
-                                    <input type="file" class="form-control-file" id="brandImage" name="brand_image" value="">
+                                    <input type="file" class="form-control-file" id="brandImage" name="brand_image" value="{{i.Brand_image}}">
                                 </div>     
                             </div>
                             <div class="modal-footer">
@@ -154,7 +155,30 @@
        
 
         <!-- Delete Brand Modal -->
-       
+       <!-- Delete Brand Modal -->
+{% for i in brand %}
+<div class="modal fade" id="deleteBrandModal" tabindex="-1" role="dialog" aria-labelledby="deleteBrandModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteBrandModalLabel">Delete Brand</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Add your Delete Brand Modal content here -->
+                <p>Are you sure you want to delete the brand "{{ i.Brand_name }}"?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+               
+            </div> <a href="" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
         
     </div>
     {%endfor%}

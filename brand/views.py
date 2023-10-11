@@ -20,8 +20,6 @@ def add_brand(request):
             Brand_name=request.POST.get('brand_name')
             Brand_image=request.FILES.get('brand_image')
             
-            print('!!!!!!!!!!!!!!!!!!!',Brand_image)
-            
             new_brand=Brand(
                 Brand_name=Brand_name,
                 Brand_image=Brand_image,
@@ -35,7 +33,7 @@ def add_brand(request):
 
 login_required(login_url='admin_login')
 def edit_brand(request,brand_id):
-    print('function is calling')
+    
     if request.user.is_superuser:
         if request.method=='POST':
             brand_name=request.POST.get('brand_name')
@@ -64,11 +62,12 @@ def edit_brand(request,brand_id):
 
 
 def delete_brand(request,brand_id):
-    try:
+   
+     try:
         brand_to_delete=Brand.objects.get(id=brand_id)
         brand_to_delete.delete()
         messages.success(request,'delete successfully')
-    except Brand.DoesNotExist:
+     except Brand.DoesNotExist:
         messages.error(request,'item does not exist')
     
-    return redirect('brand:brand')
+     return redirect('brand:brand')

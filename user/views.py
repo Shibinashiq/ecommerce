@@ -59,14 +59,14 @@ def user_signup(request):
         password = request.POST['password']
         confirm_password = request.POST['confirm_password']
 
-        username_is_exist = User.objects.get(username=username).exists()
-        if username_is_exist :
-            messages.error(request, 'User already exists')
-            return redirect('user_signup')
-        email_is_exist=User.objects.get(username=username).exist()
-        if email_is_exist:
-            messages.error(request, 'email already exists')
-            return redirect('user_signup')    
+        # username_is_exist = User.objects.get(username=username).exist()
+        # if username_is_exist :
+        #     messages.error(request, 'User already exists')
+        #     return redirect('user_signup')
+        # email_is_exist=User.objects.get(username=username).exist()
+        # if email_is_exist:
+        #     messages.error(request, 'email already exists')
+        #     return redirect('user_signup')    
         
         if password == confirm_password:
             
@@ -167,9 +167,7 @@ def user_unblock(request,user_id):
 
 
 
-def product(request):
-    
-    return render (request, 'product.html')
+
 
 
 
